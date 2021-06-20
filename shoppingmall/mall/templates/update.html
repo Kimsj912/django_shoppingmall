@@ -45,10 +45,6 @@
                 font-size: 3.5rem;
             }
         }
-
-        a{
-            text-decoration: none;
-        }
     </style>
 
 
@@ -67,48 +63,20 @@
         </div>
     </header>
 
-    <main>
-        <div class="album py-5 bg-light">
-            <div class="container">
-                <button type="button" class="btn btn-sm btn-outline-secondary">
-                    <a href="{% url 'create' %}">NEW</a>
-                </button>
 
-                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    {% for mall in malls %}
-                    <div class="col">
 
-                        <div class="card shadow-sm">
-                            <svg class="bd-placeholder-img card-img-top" width="100%" height="225"
-                                xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail"
-                                preserveAspectRatio="xMidYMid slice" focusable="false">
-                                <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
-                                    dy=".3em">Thumbnail</text>
-                            </svg>
-
-                            <div class="card-body">
-                                <h3 class="card-text">{{mall.product}}</h3>
-                                <h5 class="card-text">{{mall.price}}</h5>
-
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <a href="{%url 'detail' mall.id%}" class="btn btn-sm btn-outline-secondary">상세</a>
-
-                                    <div class="btn-group">
-                                        <a href="{%url 'update' mall.id%}" class="btn btn-sm btn-outline-secondary">수정</a>
-                                        <a href="{%url 'delete' mall.id%}" class="btn btn-sm btn-outline-secondary">삭제</a>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
-
+    <main style="text-align: center;">
+        <form action="{% url 'update' mall.id%}" method="POST" class="d-flex flex-column w-25">
+            {% csrf_token %}
+            제목 : <input type="text" name = "product" value="{{mall.product}}">
+            가격 : <input type="text" name = "price" value="{{mall.price}}">
+            설명 : <input type="text" name = "description" value="{{mall.description}}">
+            <input type="submit">
+        </form>
     </main>
-
+    
+    
+    
     <footer class="text-muted py-5">
         <div class="container">
             <p class="float-end mb-1">

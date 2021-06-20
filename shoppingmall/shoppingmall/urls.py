@@ -21,4 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.home, name='home'),
     path('detail/<int:mall_id>', views.detail, name='detail'),
+    path('create/', views.create, name='create'),
+    path('update/<int:mall_id>', views.update, name='update'),
+    path('delete/<int:mall_id>', views.delete, name='delete'),
+
 ]
